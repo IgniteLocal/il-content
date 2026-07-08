@@ -1,0 +1,141 @@
+{
+  "_readme": "Ready-to-adapt JSON-LD templates for Ignite Local content. Replace bracketed [PLACEHOLDERS] with real, verified client data. Recommend the matching type in each page's metadata block; the developer implements and validates (e.g., with Google's Rich Results Test). Never publish AggregateRating/Review schema with data that isn't real and on-page.",
+
+  "LocalBusiness": {
+    "@context": "https://schema.org",
+    "@type": "[LocalBusiness or specific subtype: Plumber, HVACBusiness, Electrician, AutoRepair, RoofingContractor, MedicalBusiness, etc.]",
+    "name": "[Business Name]",
+    "url": "[https://client.com]",
+    "telephone": "[+1-555-555-5555]",
+    "image": "[https://client.com/logo.jpg]",
+    "priceRange": "[$$]",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "[123 Main St]",
+      "addressLocality": "[City]",
+      "addressRegion": "[ST]",
+      "postalCode": "[00000]",
+      "addressCountry": "US"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "[00.0000]",
+      "longitude": "[-00.0000]"
+    },
+    "areaServed": ["[City]", "[Nearby Town]", "[Nearby Town]"],
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "[08:00]",
+        "closes": "[17:00]"
+      }
+    ],
+    "sameAs": ["[https://facebook.com/...]", "[https://instagram.com/...]", "[https://g.page/...]"]
+  },
+
+  "Service": {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "[Service Name, e.g., Roof Washing]",
+    "serviceType": "[roof washing]",
+    "description": "[One-sentence service description.]",
+    "provider": {
+      "@type": "[LocalBusiness subtype]",
+      "name": "[Business Name]",
+      "telephone": "[+1-555-555-5555]",
+      "url": "[https://client.com]"
+    },
+    "areaServed": ["[City]", "[Nearby Town]"],
+    "url": "[https://client.com/service-slug]"
+  },
+
+  "FAQPage": {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "[Real customer question?]",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "[The on-page answer, matching the visible copy. Keep it self-contained and quotable.]"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "[Second question?]",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "[Answer text.]"
+        }
+      }
+    ]
+  },
+
+  "Article": {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "[Blog Title, matches H1]",
+    "description": "[Meta description.]",
+    "image": "[https://client.com/blog-image.jpg]",
+    "author": {
+      "@type": "Organization",
+      "name": "[Business Name]"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "[Business Name]",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "[https://client.com/logo.jpg]"
+      }
+    },
+    "datePublished": "[YYYY-MM-DD]",
+    "dateModified": "[YYYY-MM-DD]",
+    "mainEntityOfPage": "[https://client.com/blog-slug]"
+  },
+
+  "HowTo": {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "[How to ...]",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "name": "[Step 1 name]",
+        "text": "[Step 1 instructions.]"
+      },
+      {
+        "@type": "HowToStep",
+        "name": "[Step 2 name]",
+        "text": "[Step 2 instructions.]"
+      }
+    ]
+  },
+
+  "BreadcrumbList": {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "[https://client.com/]"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "[Section]",
+        "item": "[https://client.com/section]"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "[Page]",
+        "item": "[https://client.com/section/page]"
+      }
+    ]
+  }
+}
