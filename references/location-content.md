@@ -4,7 +4,19 @@ This **supersedes the single "location" recipe in `page-recipes.md` for the code
 
 ## Why this exists
 
-il-website-build's `gen-location-pages.mjs` cross-joins services × cities into `/locations/{city-st}/` hubs and `/locations/{city-st}/{service}/` money pages. It enforces a **uniqueness floor** and *skips* any city that doesn't clear it — because thin, near-identical "[service] in [city]" pages get filtered or penalized at scale. This is the same rule the team set in the Content Workshop: *don't make near-identical city pages unless each has unique, valuable content.* Your job here is to produce that unique content in the exact shape the generator consumes.
+The site template builds `/locations/{city-st}/` hubs (tier 1 and 2 cities) and `/locations/{city-st}/{service}/` money pages (tier 1 cities) from the location JSON. It enforces a **uniqueness floor** and *skips* any city that doesn't clear it — because thin, near-identical "[service] in [city]" pages get filtered or penalized at scale. This is the same rule the team set in the Content Workshop: *don't make near-identical city pages unless each has unique, valuable content.* Your job here is to produce that unique content in the exact shape the generator consumes.
+
+## Which cities get pages — the City Plan
+
+Don't pick cities by hand. In the CRM, select the client's row and run **More ▸ Client Automation ▸ Plan City Pages**. It maps every city and town within the radius of the business address (plus every city the client listed, even farther out), pulls monthly Google searches for "[service] [city]" for the top services, and writes a **City Plan** tab in the client's *Keyword Data – <client>* sheet with a suggested tier per city. An AM / SEO lead fills in **Final tier**; use that column, not the suggestion.
+
+| Final tier | What gets built | What you write |
+|---|---|---|
+| **1** | City hub `/locations/{city-st}/` **+** a money page per service `/locations/{city-st}/{service}/` | Full location JSON with `"tier": 1` |
+| **2** | City hub only; its service links go to the main `/services/{service}/` pages | Full location JSON with `"tier": 2` |
+| **3** | No page. Named on the `/locations/` hub and in `client.json` `service_area_cities` | Nothing per city |
+
+Every city in the plan (tiers 1–3) goes in `service_area_cities`. If the City Plan tab is missing, ask for it to be run; if that isn't possible, fall back to the client's listed cities as tier 1 and say so in the content package. Tier 1 and 2 cities must still clear the floor below — a tier is permission to build, not a waiver. If you can't write genuinely local content for a tier-1/2 city, drop it to tier 3 and note why.
 
 ## IL geo doctrine (apply throughout)
 
@@ -22,6 +34,7 @@ The generator's floor is: **local_blurb ≥ 40 words, landmarks ≥ 2, local_faq
   "city": "Inverness",
   "state": "AL",
   "slug": "inverness-al",
+  "tier": 1,
   "lat": 33.4187,
   "lng": -86.6836,
   "local_blurb": "55–90 words of genuinely local copy — NOT a name-swap of another city.",
@@ -33,6 +46,7 @@ The generator's floor is: **local_blurb ≥ 40 words, landmarks ≥ 2, local_faq
 ```
 
 - `slug` = `{city-lowercased-hyphenated}-{state-abbrev}` (e.g. `inverness-al`) — matches the URL architecture.
+- `tier` = the **Final tier** from the City Plan (1 or 2; defaults to 1 if omitted). Tier-3 cities get no JSON file.
 - `lat`/`lng` = the city centroid (for schema `geo` / map).
 
 ### What makes `local_blurb` clear the floor (and rank)
@@ -65,7 +79,7 @@ Example service intro with tokens:
 
 ## Definition of done (per city)
 
-A city is ready when its JSON clears the floor with genuinely local content, its landmarks are real, its FAQ is localized, and client claims are VERIFY-flagged. Run `npm run gen:locations` — if the city is listed under "generated" (not "skipped"), it's wired. If it's skipped, the report tells you which field fell short; enrich and re-run. Quality over page count.
+A city is ready when its JSON clears the floor with genuinely local content, its landmarks are real, its FAQ is localized, and client claims are VERIFY-flagged. Run `npm run gen:locations` — it's a plan report: each city is listed with its tier and the pages it will get, or as skipped with the field that fell short. Enrich skipped cities and re-run. Quality over page count.
 
 ---
 

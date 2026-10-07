@@ -39,7 +39,7 @@ Sub-tasks that show up inside all three (each has its own reference):
 - **Per-page structure recipes** (home, about, service, location, contact, FAQ, blog) → `references/page-recipes.md`
 - **QA rubric + validator script** → `references/qa-rubric.md` and `scripts/content_qa.py`
 - **Handoff to il-website-build** — emit approved copy as content-as-code (markdown + frontmatter) in the shape the build ingests → `references/handoff.md`
-- **Location content** — per-city local material for the location generator → `references/location-content.md`
+- **Location content** — which cities get pages (the **City Plan** tab from CRM ▸ Client Automation ▸ Plan City Pages: tier 1 = city + service pages, tier 2 = city page, tier 3 = listed only) and per-city local material for each tier-1/2 city → `references/location-content.md`
 - **GAS automation** — how this runs inside your Google Apps Script stack (Drive → DataForSEO → model routing → Docs → editor) → `references/automation-gas.md`
 
 ## How this fits the human pipeline

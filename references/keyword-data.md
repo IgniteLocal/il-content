@@ -25,6 +25,7 @@ run **Pull Keyword Data** first. Do not proceed with invented figures; if the us
 | People Also Ask | search, question | The question bank: answer-first H2s and FAQ blocks |
 | AI Overview | search, shown yes/no, cited title/domain/URL | Which searches trigger an AI Overview and what gets cited — the GEO/AEO target |
 | Local Pack | search, business, rating, reviews, domain | The map-pack competitors for the content gap analysis |
+| City Plan | suggested tier, **Final tier**, city, state, miles, population, listed by client, searches/mo per service, why | Which cities get location pages and money pages — see `location-content.md`. Written by **Plan City Pages** (separate CRM menu item); use **Final tier**, not the suggestion |
 
 ## Choosing focus keyphrases from it
 
