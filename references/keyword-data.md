@@ -20,7 +20,7 @@ run **Pull Keyword Data** first. Do not proceed with invented figures; if the us
 |---|---|---|
 | Summary | location used, services, cities, cost, notes | Check the location (city, state or national) and any notes before trusting the numbers |
 | Local Keywords | service, keyword, monthly volume at the client's location, difficulty 0–100, CPC, competition | **Focus keyphrase (FKP) selection** for service and location pages |
-| Keyword Ideas | service seed, keyword, US monthly volume, difficulty, intent, CPC (competitor, manufacturer, product-line and retailer brand terms already removed) | Secondary keyphrases, blog topics, gaps in the taxonomy. Never target another company's brand name |
+| Keyword Ideas | service seed, keyword, US monthly volume, difficulty, intent, CPC (brand terms already removed **except brands the client installs** — listed on Summary as "Brands they install") | Secondary keyphrases, blog topics, gaps in the taxonomy. Brand terms left in are for brands the client installs: good FKPs for a service or product page (e.g. "James Hardie siding installation"); still ⚑ VERIFY any certification claim ("certified installer"). Never target a competitor's or retailer's name |
 | SERP Top 10 | search, position, title, domain, URL | Who ranks today; which page types win (directories vs local businesses) |
 | People Also Ask | search, question | The question bank: answer-first H2s and FAQ blocks |
 | AI Overview | search, shown yes/no, cited title/domain/URL | Which searches trigger an AI Overview and what gets cited — the GEO/AEO target |
