@@ -29,6 +29,7 @@ il-content/
 │   ├── qa-rubric.md             # the human review gate
 │   ├── handoff.md               # content-as-code contract to il-website-build
 │   ├── location-content.md      # per-city material for the location generator
+│   ├── keyword-data.md          # the CRM's Keyword Data sheet: tabs, FKP selection
 │   └── automation-gas.md        # running it inside Google Apps Script
 ├── assets/
 │   └── schema-templates.json    # JSON-LD templates

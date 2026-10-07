@@ -1,6 +1,6 @@
 ---
 name: il-content
-description: Produce and optimize website and blog content for Ignite Local's local-service-business clients (home services, automotive, professional services, wellness, niche trades). Use this skill for ANY Ignite Local content-production task: building a full content package for a new site or redesign (intake → keyword & SERP research → Content Blueprint → page drafts → content gap analysis → blog topic list), writing monthly blogs from an approved topic list, or refreshing/rewriting existing pages flagged by low performance. Trigger it on phrases like "write the pages for [client]," "do the FKP for," "focus keyphrase selection," "draft this month's blogs," "refresh this page," "content gap analysis," "blog topic ideas for," "new content package," "rewrite this service page," or any request to create content that must rank in search, get cited by AI answer engines, reflect the client's brand, and convert. Trigger even when the user just says "write content for [client]" inside an Ignite Local context. The skill enforces natural-language voice, SEO + GEO/AEO best practices, E-E-A-T and conversion structure, and the Content Blueprint schema.
+description: Produce and optimize website and blog content for Ignite Local's local-service-business clients (home services, automotive, professional, wellness, niche trades). Use for ANY Ignite Local content task: full content package for a new site/redesign (intake → keyword/SERP research → Content Blueprint → page drafts → gap analysis → blog topic list), monthly blogs from an approved topic list, or refreshing/rewriting underperforming pages. Trigger on phrases like "write the pages for [client]," "do the FKP for," "focus keyphrase selection," "draft this month's blogs," "refresh this page," "content gap analysis," "blog topic ideas for," "new content package," "rewrite this service page," or any request for content that must rank in search, get cited by AI answer engines, reflect the client's brand, and convert. Trigger even on just "write content for [client]" in an Ignite Local context. Enforces natural-language voice, SEO + GEO/AEO best practices, E-E-A-T, conversion structure, and the Content Blueprint schema.
 ---
 
 # Ignite Local Content Engine
@@ -32,7 +32,7 @@ Route the request to one of three workflows. Read that workflow's reference file
 
 Sub-tasks that show up inside all three (each has its own reference):
 - **Voice Profile** — capture the client's voice once at kickoff, reuse on every page/blog → `references/voice-profile.md`
-- **Keyword + SERP research** — **live SERP + People-Also-Ask data is a required input**, not optional → `references/seo-geo-aeo.md`
+- **Keyword + SERP research** — **real data is a required input**, not optional: volumes, difficulty, People-Also-Ask, SERP and AI Overview citations come from the client's **Keyword Data sheet** (CRM ▸ Client Automation ▸ Pull Keyword Data) → `references/keyword-data.md`, method in `references/seo-geo-aeo.md`
 - **Content Blueprint** — the per-page keyphrase + intent + question-bank + schema map that drives every draft (this replaces the old flat "FKP") → `references/content-blueprint.md`
 - **Content Gap Analysis** — pages/topics the site is missing → `references/content-gap-analysis.md`
 - **Blog Topic Ideation** — the 15–20 topic list for client review → `references/content-gap-analysis.md`
@@ -72,7 +72,7 @@ The full rules live in the reference files; internalize these before you write a
 - **Skimmable.** Short paragraphs (1–3 sentences), descriptive question-style H2s, bullets for lists, bold sparingly for real emphasis.
 - **No AI tells.** No "top-notch / industry-leading / cutting-edge / seamless / unparalleled / state-of-the-art / world-class / game-changing," no "look no further / your go-to / tailored to your needs," and **no em dashes** (use commas, periods, or parentheses). Full banned list in `references/writing-guidelines.md`.
 - **Keyphrase discipline without stuffing.** Primary keyphrase in the H1, the first ~100 words, the meta title (near the front), the URL slug, and naturally through the body. Secondary keyphrases woven in where they fit. Never at the cost of readability.
-- **Ground everything in real data, never invent it.** Market facts (pricing, timelines, codes, permits) come from live SERP research; questions come from real People-Also-Ask; keyword volume/difficulty comes from DataForSEO/SE Ranking. Models do the *reasoning* on top of real data, not the data itself. Any client-specific claim you can't verify gets a `⚑ VERIFY:` flag.
+- **Ground everything in real data, never invent it.** Market facts (pricing, timelines, codes, permits) come from live SERP research; questions come from real People-Also-Ask; keyword volume/difficulty comes from the client's Keyword Data sheet (DataForSEO, pulled from the CRM; `references/keyword-data.md`). Models do the *reasoning* on top of real data, not the data itself. Any client-specific claim you can't verify gets a `⚑ VERIFY:` flag.
 - **Prove it.** Pull in real E-E-A-T signals the client actually has: years in business, licenses/certifications, service area, warranties/guarantees, review counts, process. If you don't have them, request them or mark `⚑ VERIFY:`.
 - **One clear next step.** Every page and blog ends with a specific CTA tied to how this client takes business (call, book, free estimate, quote form).
 
@@ -112,6 +112,7 @@ If you can make a reasonable assumption and label it, prefer that over stalling.
 - `references/qa-rubric.md` — The scoring gate and how to self-review.
 - `references/handoff.md` — The content-as-code contract to `il-website-build`: file shape, frontmatter, `cities.json`, the `needsVerification` bridge, and the ownership boundary.
 - `references/location-content.md` — Per-city local material that feeds the location generator while clearing the uniqueness floor.
+- `references/keyword-data.md` — Where the real keyword/SERP data lives (the CRM's Keyword Data sheet), what each tab holds, and how to pick focus keyphrases from it.
 - `references/automation-gas.md` — How to run this inside a Google Apps Script stack (Drive intake → DataForSEO/PAA → Claude/GPT routing → Docs → editor) without re-embedding the methodology.
 - `assets/schema-templates.json` — Ready JSON-LD for LocalBusiness, Service, FAQPage, Article, BreadcrumbList.
 - `scripts/content_qa.py` — Validates meta lengths, slug format, banned phrases, em dashes, keyphrase placement, reading level, prints a checklist.

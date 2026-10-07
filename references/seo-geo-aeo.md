@@ -23,7 +23,7 @@ The good news: content built this way (answer-first, well-structured, genuinely 
 ## Real data is a required input
 
 Do not invent search data. Ground the work in real sources, and let the model reason on top:
-- **Keyword volume + difficulty:** DataForSEO / SE Ranking. Prefer local, commercial-intent phrases with realistic difficulty.
+- **Keyword volume + difficulty:** the client's Keyword Data sheet (DataForSEO via the CRM; `keyword-data.md`). Prefer local, commercial-intent phrases with realistic difficulty.
 - **People-Also-Ask + related searches:** pull the real questions per service. These become the answer-first H2s and the FAQ block, and they are the single biggest driver of AI citations.
 - **SERP + competitor analysis:** who ranks, what they cover, which queries trigger an AI Overview and who gets cited.
 - **Market facts** (pricing, timelines, permits, codes): from live results, flagged `⚑ VERIFY` against the client's real numbers.

@@ -6,7 +6,7 @@ Use this for a new site build or a full redesign, where you're producing content
 
 1. **Ingest the intake + interview** (from Google Drive)
 2. **Build the Voice Profile** (capture once, reuse on every page)
-3. **Keyword + SERP research** (live data required: DataForSEO/SE Ranking + People-Also-Ask)
+3. **Keyword + SERP research** (live data required: the client's Keyword Data sheet from the CRM, see `keyword-data.md`)
 4. **Content gap analysis** → confirm the taxonomy
 5. **Content Blueprint** for every page (keyphrase + intent + question bank + schema)
 6. **Draft content for every page** in the taxonomy
@@ -41,9 +41,9 @@ Before writing anything, capture the client's voice once so every page and blog 
 
 Real data is a required input, not a nice-to-have. Models reason on top of it; they do not invent it.
 
-- Pull **keyword volume + difficulty** from DataForSEO / SE Ranking.
-- Pull **People-Also-Ask + related searches** for each service — these become the question bank in the Blueprint and are the biggest driver of AI citations.
-- Analyze the **SERP + top 3 competitors**: who ranks, what they cover, where the gaps are, which queries trigger AI Overviews and who gets cited.
+- Read the client's **Keyword Data sheet** (`keyword-data.md`; run **Pull Keyword Data** in the CRM if it doesn't exist): **keyword volume + difficulty** from Local Keywords and Keyword Ideas.
+- Take **People-Also-Ask** questions from its People Also Ask tab for each service — these become the question bank in the Blueprint and are the biggest driver of AI citations.
+- Analyze the **SERP + top 3 competitors** (SERP Top 10, Local Pack and AI Overview tabs): who ranks, what they cover, where the gaps are, which queries trigger AI Overviews and who gets cited.
 - Pull **market facts** (pricing ranges, timelines, permits, codes) from live results and flag `⚑ VERIFY` against the client's real numbers.
 - Establish the **local geography set** (primary city + real surrounding towns).
 

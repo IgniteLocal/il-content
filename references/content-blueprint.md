@@ -30,13 +30,13 @@ It's produced after intake + gap analysis and before drafting. It is **client-fa
 - The client's **intake + discovery interview** (services, area, differentiators, credentials).
 - The client's **URL** (if any) and **top 3 local competitors**.
 - The **confirmed taxonomy** from the gap analysis.
-- **Live SERP + People-Also-Ask data** and **keyword volume/difficulty** (DataForSEO / SE Ranking). See §3 — this is required, not optional.
+- The client's **Keyword Data sheet** (live SERP + People-Also-Ask + keyword volume/difficulty from DataForSEO, pulled from the CRM; `keyword-data.md`). See §3 — this is required, not optional.
 
 ## 3. Research method (real data required)
 
 Real market data is a required input. Models reason on top of it; they do not invent it.
 
-- **Keyword volume + difficulty:** pull from DataForSEO / SE Ranking. Prefer local, commercial-intent phrases with realistic difficulty over high-volume head terms a local business can't win ("collision repair Bellevue," not "auto repair").
+- **Keyword volume + difficulty:** from the Keyword Data sheet (Local Keywords, Keyword Ideas). Prefer local, commercial-intent phrases with realistic difficulty over high-volume head terms a local business can't win ("collision repair Bellevue," not "auto repair").
 - **People-Also-Ask + related searches:** pull the real questions for each service. These become the question bank (§5) and are the single biggest driver of AI citations.
 - **SERP + competitor analysis:** who ranks for each target, what they cover, where the gaps are, and which queries trigger an AI Overview and who gets cited.
 - **Market facts** (pricing ranges, timelines, permits, codes): pull from live results and flag `⚑ VERIFY` against the client's real numbers.
