@@ -4,7 +4,7 @@ Structure recipes per page type. Each is a starting skeleton, not a rigid mold �
 
 Every page leads with its metadata block (URL, primary keyphrase, meta title + count, meta description + count, secondary keyphrases, recommended schema, internal links) before the body.
 
-**Routing note (Astro stack):** `il-website-build` uses a dual-hub route structure — `/services/{service}/`, `/locations/`, `/locations/{city-st}/`, and generated `/locations/{city-st}/{service}/`. Recommend slugs that fit it (a service page slug like `/wood-privacy-fences` maps to the services hub), but the build owns final routing. When emitting for the build, each recipe below becomes a `pages/*.md` or `services/*.md` file with YAML frontmatter — see `references/handoff.md`.
+**Routing note (Astro stack):** `il-website-build` uses a dual-hub route structure — `/services/{service}/`, `/locations/`, `/locations/{fkp-slug}/` city hubs, and generated tier-1 `/locations/{city-st}/{service}/`. Slugs are the primary keyphrase slugified ("wood privacy fence North Shelby County" → `/wood-privacy-fence-north-shelby-county`, served under the services hub); utility pages keep `/about`, `/contact`, `/faq`, `/blog`. When emitting for the build, each recipe below becomes a `pages/*.md` or `services/*.md` file with YAML frontmatter — see `references/handoff.md`.
 
 ---
 

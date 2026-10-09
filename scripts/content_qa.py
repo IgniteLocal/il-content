@@ -7,6 +7,7 @@ Checks the things a script does better than eyeballing:
   - URL slug format
   - banned AI-tell phrases and em dashes
   - primary keyphrase placement (H1, first ~100 words, meta title, slug)
+  - slug = keyphrase slugified; meta title = [Power word] [service] in|serving|near [place]
   - a rough reading-level estimate (Flesch-Kincaid grade)
 
 It does NOT judge quality, voice, truthfulness, or conversion. Pair it with
@@ -125,6 +126,21 @@ def first_n_words(text, n):
     clean = re.sub(r"[#>*_`\[\]]", " ", text)
     words = clean.split()
     return " ".join(words[:n]).lower()
+
+
+# Titles: [Power word] [service] in|serving|near [location] | Brand. Only words that are true for
+# the client; no Best / #1 / Top-Rated / Certified / Award-Winning without proof.
+POWER_WORDS = {"professional", "expert", "trusted", "reliable", "dependable", "experienced", "licensed",
+               "local", "skilled", "quality", "affordable", "honest", "fast", "free", "emergency",
+               "family-owned", "locally-owned"}
+TITLE_CONNECTORS = ("in", "serving", "near")
+# Utility pages keep conventional slugs; every other page's slug is its keyphrase, slugified.
+UTILITY_SLUGS = {"about", "about-us", "contact", "contact-us", "faq", "faqs", "blog", "thank-you", "gallery", "reviews"}
+
+
+def slugify(s):
+    s = s.lower().replace("&", " and ")
+    return re.sub(r"[^a-z0-9]+", "-", s).strip("-")
 
 
 KP_STOPWORDS = {"in", "the", "a", "an", "of", "for", "and", "to", "your", "on", "at", "with"}
@@ -246,18 +262,30 @@ def run_checks(text):
               f"Keyphrase in first {FIRST_N_WORDS} words")
         mt = strip_count_annotation(grab("Meta Title", text))
         if mt:
-            r.add("PASS" if phrase_present(keyphrase, mt) else "WARN", "Keyphrase in meta title")
+            ok = phrase_present(keyphrase, mt)
+            r.add("PASS" if ok else "FAIL", "Every keyphrase word in meta title")
+            first = re.findall(r"[a-z0-9'-]+", mt.lower())[:1]
+            ok = bool(first) and first[0] in POWER_WORDS
+            r.add("PASS" if ok else "FAIL", "Meta title starts with a power word",
+                  "" if ok else f"(starts with \"{first[0] if first else ''}\"; use e.g. Trusted, Expert, Professional, Licensed, Free)")
+            # A keyphrase with a place (capitalized word, e.g. "roof repair Auburn WA") needs
+            # "in", "serving" or "near" between service and place, unless the keyphrase already has one.
+            has_geo = any(w[:1].isupper() for w in keyphrase.split()[1:])
+            kp_has_conn = any(w in ("in", "for", "near", "serving") for w in kp.split())
+            if has_geo and not kp_has_conn:
+                ok = bool(re.search(r"\b(" + "|".join(TITLE_CONNECTORS) + r")\b", mt, re.I))
+                r.add("PASS" if ok else "FAIL", "Meta title joins service and location with in/serving/near",
+                      "" if ok else f"(\"{mt}\")")
         slug = grab("URL", text)
         if slug and slug.strip() != "/":
-            slug_words = {_norm(w) for w in re.findall(r"[a-z0-9']+", slug.lower())}
-            sig_tokens = [_norm(t) for t in _sig_tokens(kp)]
-            # A clean slug carries the service HEAD of the keyphrase (usually the
-            # first 1-2 words); trailing geo (city/region) is optional in slugs.
-            head = sig_tokens[:2]
-            missing = [t for t in head if t not in slug_words]
-            ok = bool(head) and not missing
-            r.add("PASS" if ok else "WARN", "Keyphrase head in URL slug",
-                  "" if ok else "(slug missing: " + ", ".join(missing) + ")")
+            last = slug.strip().strip("/").split("/")[-1].lower()
+            if last in UTILITY_SLUGS:
+                r.add("INFO", f"Utility page slug /{last} (exempt from keyphrase-slug rule)")
+            else:
+                want = slugify(keyphrase)
+                ok = last == want
+                r.add("PASS" if ok else "FAIL", "URL slug is the full keyphrase, slugified",
+                      "" if ok else f"(got \"{last}\", want \"{want}\")")
     else:
         r.add("WARN", "No 'Primary Keyphrase:' line found — skipping placement checks")
 

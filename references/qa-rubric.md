@@ -33,7 +33,7 @@ Score each item pass / fix. Any "fix" gets fixed before handoff.
 
 ### 3. Ranks + gets cited (SEO + GEO/AEO)
 - [ ] Correct search intent for the page type.
-- [ ] Primary keyphrase in H1, first ~100 words, meta title (near front), URL slug, and body, naturally — no stuffing.
+- [ ] Primary keyphrase in H1, first ~100 words, meta title, URL slug, and body, naturally — no stuffing.
 - [ ] No keyphrase cannibalization across pages/posts.
 - [ ] Secondary keyphrases woven in.
 - [ ] **Answer-first** sections; **question-style H2s** matching real queries.
@@ -43,9 +43,9 @@ Score each item pass / fix. Any "fix" gets fixed before handoff.
 - [ ] Internal links with descriptive anchors; cluster links up to pillar.
 
 ### 4. Metadata + mechanics
-- [ ] Meta title ≤ 60 chars, keyphrase near front, count annotated.
+- [ ] Meta title ≤ 60 chars, count annotated, `[Power word] [service] in|serving|near [location] | Brand`, power word true for the client.
 - [ ] Meta description ~150–160 chars, benefit + area + CTA, count annotated.
-- [ ] URL slug: lowercase, hyphenated, keyphrase-based, no dates/underscores/pipes.
+- [ ] URL slug = the full primary keyphrase slugified (utility pages keep `/about`, `/contact`, `/faq`, `/blog`); no dates/underscores/pipes.
 - [ ] Complete metadata block present.
 - [ ] Formatted text, not HTML/design comp (unless asked).
 

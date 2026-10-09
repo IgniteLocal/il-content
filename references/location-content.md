@@ -4,7 +4,7 @@ This **supersedes the single "location" recipe in `page-recipes.md` for the code
 
 ## Why this exists
 
-The site template builds `/locations/{city-st}/` hubs (tier 1 and 2 cities) and `/locations/{city-st}/{service}/` money pages (tier 1 cities) from the location JSON. It enforces a **uniqueness floor** and *skips* any city that doesn't clear it — because thin, near-identical "[service] in [city]" pages get filtered or penalized at scale. This is the same rule the team set in the Content Workshop: *don't make near-identical city pages unless each has unique, valuable content.* Your job here is to produce that unique content in the exact shape the generator consumes.
+The site template builds `/locations/{slug}/` city hubs (slug = the hub keyphrase slugified) (tier 1 and 2 cities) and `/locations/{city-st}/{service}/` money pages (tier 1 cities) from the location JSON. It enforces a **uniqueness floor** and *skips* any city that doesn't clear it — because thin, near-identical "[service] in [city]" pages get filtered or penalized at scale. This is the same rule the team set in the Content Workshop: *don't make near-identical city pages unless each has unique, valuable content.* Your job here is to produce that unique content in the exact shape the generator consumes.
 
 ## Which cities get pages — the City Plan
 
@@ -27,13 +27,15 @@ Every city in the plan (tiers 1–3) goes in `service_area_cities`. If the City 
 
 ## The hard contract (match exactly)
 
-The generator's floor is: **local_blurb ≥ 40 words, landmarks ≥ 2, local_faq ≥ 1.** Aim above the floor (blurb 55–90 words, 2–3 landmarks, 2–3 local FAQs). Output one JSON file per city, at `src/content/locations/{city-st}.json`:
+The generator's floor is: **local_blurb ≥ 40 words, landmarks ≥ 2, local_faq ≥ 1.** Aim above the floor (blurb 55–90 words, 2–3 landmarks, 2–3 local FAQs). Output one JSON file per city, at `src/content/locations/{slug}.json`:
 
 ```json
 {
   "city": "Inverness",
   "state": "AL",
-  "slug": "inverness-al",
+  "slug": "fence-company-inverness-al",
+  "fkp": "fence company Inverness AL",
+  "meta_title": "Trusted Fence Company in Inverness, AL | Masters Fence",
   "tier": 1,
   "lat": 33.4187,
   "lng": -86.6836,
@@ -45,7 +47,8 @@ The generator's floor is: **local_blurb ≥ 40 words, landmarks ≥ 2, local_faq
 }
 ```
 
-- `slug` = `{city-lowercased-hyphenated}-{state-abbrev}` (e.g. `inverness-al`) — matches the URL architecture.
+- `fkp` = the city hub's primary keyphrase (service + city + state). `slug` = `fkp` slugified (e.g. `fence-company-inverness-al`); the build serves it at `/locations/{slug}/` and its QA fails a mismatch.
+- `meta_title` = `[Power word] [trade] in|serving|near [City, ST] | Brand`, ≤ 60 chars.
 - `tier` = the **Final tier** from the City Plan (1 or 2; defaults to 1 if omitted). Tier-3 cities get no JSON file.
 - `lat`/`lng` = the city centroid (for schema `geo` / map).
 
@@ -87,7 +90,7 @@ A city is ready when its JSON clears the floor with genuinely local content, its
 
 ```json
 {
-  "city": "Inverness", "state": "AL", "slug": "inverness-al",
+  "city": "Inverness", "state": "AL", "slug": "fence-company-inverness-al", "fkp": "fence company Inverness AL",
   "lat": 33.4187, "lng": -86.6836,
   "local_blurb": "Inverness sits in the heart of the 35242 corridor, where established streets off Valleydale Road and around Inverness Country Club mix mature tree lines with newer builds. Homeowners here usually want wood privacy fencing that holds up in Shelby County's clay soil out back, and HOA-approved aluminum along the front. We build both, set posts deep so gates stay square through wet Alabama winters, and handle the local permit steps.",
   "landmarks": ["Inverness Country Club", "Lake Heather", "Valleydale Road corridor"],

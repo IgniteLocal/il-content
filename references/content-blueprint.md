@@ -47,7 +47,7 @@ When a step's data isn't available yet, say so and mark the affected figures dir
 
 - **One primary keyphrase per page**, matched to that page's intent. No two pages compete for the same phrase (cannibalization).
 - **Home:** broadest core service + primary city. **Service pages:** specific service (+ city). **Location pages:** service + location. **About:** trust/entity phrase. **Blog landing:** informational phrase. **Contact:** action phrase.
-- Geo can live in the primary keyphrase, but keep the **slug** built on the keyphrase *head* (the service); trailing city/region is optional in the slug to keep it clean (see §6).
+- The **slug is the whole primary keyphrase, slugified**, geo included (see §6). Write keyphrases without filler ("roof repair Auburn WA", not "roof repair in Auburn WA") so the slug stays clean.
 
 ## 5. Building the question bank (the AEO engine)
 
@@ -59,11 +59,19 @@ Phrase them the way people actually search ("How much does a fence cost in North
 
 ## 6. Meta title, description, and slug rules
 
-**Meta title:** ≤ 60 characters, primary keyphrase near the front, then a differentiator or locale. Compelling, title-case. Annotate the count.
+**Meta title:** `[Power word] [service] in|serving|near [location] | [Brand]`, ≤ 60 characters, title-case. Annotate the count.
+- Start with a power word that is **true for the client**: Trusted, Expert, Professional, Reliable, Dependable, Experienced, Licensed, Local, Skilled, Affordable, Fast, Free (estimate/contact pages), Emergency, Family-Owned. Never Best, #1, Top-Rated, Certified or Award-Winning without proof. Vary it across sibling pages.
+- Join the service and the place with **in** (home city, cities they work in), **serving** (counties, regions, out-of-town cities) or **near**. Every keyphrase word must appear in the title; the exact string doesn't need to.
+- Keyphrases with no place (blog, FAQ) still lead with a power word. If the keyphrase already has a connector ("roofing tips for Michigan homeowners"), keep it.
+- Shorten the brand when space is tight (`| Double R` vs `| Double R Roofing`).
+- Examples: `Trusted Roofing Company in Sterling Heights, MI | Double R` (58) · `Expert Roofer Serving Rochester Hills, MI | Double R Roofing` (60) · `Free Roofing Estimate in Sterling Heights | Contact Double R` (60).
+- The H1 stays the natural keyphrase phrase without the power word ("Roofing Company in Sterling Heights, MI").
 
 **Meta description:** ~150–160 characters, benefit + service area + light CTA, primary keyphrase natural. Annotate the count.
 
-**URL slug:** lowercase, hyphen-separated, built on the keyphrase **head** (the service). Trailing geo optional. No dates, underscores, spaces, special characters, or the `|` pipe. Home is `/`. Keep it short and human-readable.
+**URL slug:** the **full primary keyphrase, slugified**: lowercase, hyphen-separated, `&` → `and`, geo included. "residential roofing Sterling Heights" → `/residential-roofing-sterling-heights`; city hub "roofing company Troy MI" → `roofing-company-troy-mi`. No dates, underscores, spaces, special characters, or the `|` pipe. Home is `/`.
+- **Exception, utility pages:** About, Contact, FAQ, Blog, Thank-You, Gallery keep conventional slugs (`/about`, `/contact`, `/faq`, `/blog`). Their keyphrases make long, unstable URLs.
+- `content_qa.py` fails a slug that isn't the slugified keyphrase, and a meta title without the power word, the connector, or a keyphrase word. `il-website-build`'s `site_qa.mjs` enforces the same at build time.
 
 ## 7. The output schema (with worked example)
 
