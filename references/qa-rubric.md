@@ -45,7 +45,8 @@ Score each item pass / fix. Any "fix" gets fixed before handoff.
 ### 4. Metadata + mechanics
 - [ ] Meta title ≤ 60 chars, count annotated, `[Power word] [service] in|serving|near [location] | Brand`, power word true for the client.
 - [ ] Meta description ~150–160 chars, benefit + area + CTA, count annotated.
-- [ ] URL slug = the full primary keyphrase slugified (utility pages keep `/about`, `/contact`, `/faq`, `/blog`); no dates/underscores/pipes.
+- [ ] Keyphrase is location-free (city pages excepted); URL slug = the keyphrase slugified on every page, About/Contact/FAQ/Blog included; no dates/underscores/pipes.
+- [ ] New package includes the first blog post, ready to publish.
 - [ ] Complete metadata block present.
 - [ ] Formatted text, not HTML/design comp (unless asked).
 

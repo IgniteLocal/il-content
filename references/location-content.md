@@ -4,7 +4,7 @@ This **supersedes the single "location" recipe in `page-recipes.md` for the code
 
 ## Why this exists
 
-The site template builds `/locations/{slug}/` city hubs (slug = the hub keyphrase slugified) (tier 1 and 2 cities) and `/locations/{city-st}/{service}/` money pages (tier 1 cities) from the location JSON. It enforces a **uniqueness floor** and *skips* any city that doesn't clear it — because thin, near-identical "[service] in [city]" pages get filtered or penalized at scale. This is the same rule the team set in the Content Workshop: *don't make near-identical city pages unless each has unique, valuable content.* Your job here is to produce that unique content in the exact shape the generator consumes.
+The site template builds city hubs at `/{slug}/` (slug = the hub keyphrase slugified; tier 1 and 2 cities) and tier-1 city × service pages at `/{service-keyphrase}-{city}-{st}/` from the location JSON. It enforces a **uniqueness floor** and *skips* any city that doesn't clear it — because thin, near-identical "[service] in [city]" pages get filtered or penalized at scale. This is the same rule the team set in the Content Workshop: *don't make near-identical city pages unless each has unique, valuable content.* Your job here is to produce that unique content in the exact shape the generator consumes.
 
 ## Which cities get pages — the City Plan
 
@@ -47,7 +47,7 @@ The generator's floor is: **local_blurb ≥ 40 words, landmarks ≥ 2, local_faq
 }
 ```
 
-- `fkp` = the city hub's primary keyphrase (service + city + state). `slug` = `fkp` slugified (e.g. `fence-company-inverness-al`); the build serves it at `/locations/{slug}/` and its QA fails a mismatch.
+- `fkp` = the city hub's primary keyphrase (service + city + state). `slug` = `fkp` slugified (e.g. `fence-company-inverness-al`); the build serves it at `/{slug}/` and its QA fails a mismatch. City pages are the one place the keyphrase includes the location.
 - `meta_title` = `[Power word] [trade] in|serving|near [City, ST] | Brand`, ≤ 60 chars.
 - `tier` = the **Final tier** from the City Plan (1 or 2; defaults to 1 if omitted). Tier-3 cities get no JSON file.
 - `lat`/`lng` = the city centroid (for schema `geo` / map).

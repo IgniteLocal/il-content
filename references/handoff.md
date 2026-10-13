@@ -47,12 +47,12 @@ Per-city/service pages under `/locations/{city-st}/{service}/` are **generated**
 
 ```yaml
 ---
-title: "Trusted Wood Privacy Fences Serving North Shelby County"  # meta title, <=60 chars, power word + in|serving|near
+title: "Trusted Wood Privacy Fence Installer Serving Shelby County"  # meta title, <=60 chars, power word + in|serving|near + place
 description: "Custom wood privacy fence installation ..."  # meta description, ~150-160
-slug: "/wood-privacy-fence-north-shelby-county"            # = primaryKeyphrase slugified
-primaryKeyphrase: "wood privacy fence North Shelby County"
+slug: "/wood-privacy-fence-installer"                      # = primaryKeyphrase slugified
+primaryKeyphrase: "wood privacy fence installer"            # location-free; the place goes in the title
 secondaryKeyphrases: ["cedar privacy fence Inverness", "6 foot privacy fence Hoover"]
-service: "wood-privacy-fence-north-shelby-county"   # service pages only; matches the file slug
+service: "wood-privacy-fence-installer"   # service pages only; matches the file slug
 schema: "Service + FAQPage"          # recommended JSON-LD type(s); build implements
 internalLinks: ["/residential-fence-installation", "/pool-fencing", "/contact"]
 needsVerification:                   # machine-readable ⚑ VERIFY (see below)
@@ -68,7 +68,7 @@ needsVerification:                   # machine-readable ⚑ VERIFY (see below)
 
 Field notes:
 - **title / description** map straight to what `site_qa.mjs` checks for presence and length. Keep title ≤60, description ~150–160.
-- **slug** = the primary keyphrase slugified (utility pages keep `/about`, `/contact`, `/faq`, `/blog`). Home is `/`. The build serves it as `/services/{slug}/` (service) or `/locations/{slug}/` (city hub), and its `fkp` field = `primaryKeyphrase`; `site_qa.mjs` fails a mismatch.
+- **slug** = the primary keyphrase slugified, on every page (About, Contact, FAQ and Blog too). Home is `/`. The build serves every page at the root (`/{slug}/`; posts at `/{blog-slug}/{slug}/`), and its `fkp` field = `primaryKeyphrase`; `site_qa.mjs` fails a mismatch. Keyphrases are location-free except on city pages.
 - **schema** is the recommended type only. The build writes the JSON-LD from `assets/schema-templates.json` and `client.json` data.
 - **internalLinks** are suggestions the build wires up.
 - Keep frontmatter **keys in sync with il-website-build's content-collection schema** — that schema is the source of truth. If a key name differs there, match it here.

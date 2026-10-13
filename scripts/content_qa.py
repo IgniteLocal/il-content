@@ -7,7 +7,8 @@ Checks the things a script does better than eyeballing:
   - URL slug format
   - banned AI-tell phrases and em dashes
   - primary keyphrase placement (H1, first ~100 words, meta title, slug)
-  - slug = keyphrase slugified; meta title = [Power word] [service] in|serving|near [place]
+  - keyphrase location-free (city pages excepted); slug = keyphrase slugified on every page;
+    meta title = [Power word] [keyphrase] in|serving|near [place] (or for [audience])
   - a rough reading-level estimate (Flesch-Kincaid grade)
 
 It does NOT judge quality, voice, truthfulness, or conversion. Pair it with
@@ -133,9 +134,9 @@ def first_n_words(text, n):
 POWER_WORDS = {"professional", "expert", "trusted", "reliable", "dependable", "experienced", "licensed",
                "local", "skilled", "quality", "affordable", "honest", "fast", "free", "emergency",
                "family-owned", "locally-owned"}
-TITLE_CONNECTORS = ("in", "serving", "near")
-# Utility pages keep conventional slugs; every other page's slug is its keyphrase, slugified.
-UTILITY_SLUGS = {"about", "about-us", "contact", "contact-us", "faq", "faqs", "blog", "thank-you", "gallery", "reviews"}
+TITLE_CONNECTORS = ("in", "serving", "near", "for")
+# Only these keep plain slugs; About, Contact, FAQ and Blog use their keyphrase like every other page.
+UTILITY_SLUGS = {"thank-you"}
 
 
 def slugify(s):
@@ -268,23 +269,27 @@ def run_checks(text):
             ok = bool(first) and first[0] in POWER_WORDS
             r.add("PASS" if ok else "FAIL", "Meta title starts with a power word",
                   "" if ok else f"(starts with \"{first[0] if first else ''}\"; use e.g. Trusted, Expert, Professional, Licensed, Free)")
-            # A keyphrase with a place (capitalized word, e.g. "roof repair Auburn WA") needs
-            # "in", "serving" or "near" between service and place, unless the keyphrase already has one.
-            has_geo = any(w[:1].isupper() for w in keyphrase.split()[1:])
-            kp_has_conn = any(w in ("in", "for", "near", "serving") for w in kp.split())
-            if has_geo and not kp_has_conn:
-                ok = bool(re.search(r"\b(" + "|".join(TITLE_CONNECTORS) + r")\b", mt, re.I))
-                r.add("PASS" if ok else "FAIL", "Meta title joins service and location with in/serving/near",
-                      "" if ok else f"(\"{mt}\")")
+            # The title carries the place (or audience): "... in|serving|near Sterling Heights", "... for Michigan Homeowners".
+            ok = bool(re.search(r"\b(" + "|".join(TITLE_CONNECTORS) + r")\b", mt, re.I))
+            r.add("PASS" if ok else "FAIL", "Meta title joins keyphrase and place with in/serving/near (or for + audience)",
+                  "" if ok else f"(\"{mt}\")")
         slug = grab("URL", text)
-        if slug and slug.strip() != "/":
-            last = slug.strip().strip("/").split("/")[-1].lower()
+        last = slug.strip().strip("/").split("/")[-1].lower() if slug and slug.strip() != "/" else ""
+        # City pages end in a state code (roofing-company-troy-mi) and keep the city in the keyphrase; every other
+        # keyphrase is location-free ("residential roofing contractor"): a capitalized place word is a FAIL.
+        city_page = bool(re.search(r"-[a-z]{2}$", last))
+        places = [w for w in keyphrase.split()[1:] if w[:1].isupper() and w.lower() not in ("faq", "faqs")]
+        if not city_page:
+            ok = not places
+            r.add("PASS" if ok else "FAIL", "Keyphrase is location-free (the place goes in the title)",
+                  "" if ok else f"(drop: {' '.join(places)})")
+        if last:
             if last in UTILITY_SLUGS:
                 r.add("INFO", f"Utility page slug /{last} (exempt from keyphrase-slug rule)")
             else:
                 want = slugify(keyphrase)
                 ok = last == want
-                r.add("PASS" if ok else "FAIL", "URL slug is the full keyphrase, slugified",
+                r.add("PASS" if ok else "FAIL", "URL slug is the keyphrase, slugified",
                       "" if ok else f"(got \"{last}\", want \"{want}\")")
     else:
         r.add("WARN", "No 'Primary Keyphrase:' line found — skipping placement checks")

@@ -11,7 +11,8 @@ Use this for a new site build or a full redesign, where you're producing content
 5. **Content Blueprint** for every page (keyphrase + intent + question bank + schema)
 6. **Draft content for every page** in the taxonomy
 7. **Blog topic list** (15–20 ideas) for client review
-8. **Self-QA** the whole package, then hand off
+8. **First blog post** from the top approved (or most timely) topic, ready to publish at launch
+9. **Self-QA** the whole package, then hand off
 
 Do them in order. Each step feeds the next, and skipping real research is how packages end up generic.
 
@@ -104,7 +105,15 @@ Suggested Internal Links: [page → page]
 
 Produce a client-facing list of **15–20 blog topic ideas** for ongoing content, organized as content clusters supporting the service (pillar) pages. This is what the client reviews and approves to feed monthly blog production. Format and cluster logic in `content-gap-analysis.md`.
 
-## Step 8 — Self-QA and hand off
+## Step 8 — First blog post
+
+Write the **first post** so the blog isn't empty at launch: take the top-priority approved topic from Step 7 (or the most
+timely one for the launch season: ice dams in winter, storm prep in spring), and draft it with the full Blog Production
+format in `blog-production.md` (metadata block, answer-first lead, question-style H2s, FAQ, internal links to the
+matching service page and the contact page, no prices unless the client allows them). Its keyphrase follows the same
+rule as pages: location-free, slug = keyphrase slugified, served under the blog (`/roofing-tips/winter-roof-replacement`).
+
+## Step 9 — Self-QA and hand off
 
 Run the whole package through `scripts/content_qa.py` (or the manual rubric in `qa-rubric.md`):
 - Every page has a complete metadata block within length limits.
@@ -123,7 +132,7 @@ Then hand off with a one-line summary of what's included and what still needs cl
 
 Start the package with a short header the editor and developer can act on:
 ```
-CONTENT PACKAGE: [Client] — [# pages] pages + Blueprint + gap analysis + [# ] blog topics
+CONTENT PACKAGE: [Client] — [# pages] pages + Blueprint + gap analysis + [# ] blog topics + first blog post
 STATUS: First draft for editor humanization → dev build → SEO QA → R1/R2
 NEEDS VERIFICATION: [consolidated ⚑ VERIFY list]
 ```
