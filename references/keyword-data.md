@@ -18,11 +18,11 @@ run **Pull Keyword Data** first. Do not proceed with invented figures; if the us
 
 | Tab | Columns | Use it for |
 |---|---|---|
-| Summary | location used, services, cities, cost, notes | Check the location (city, state or national) and any notes before trusting the numbers |
-| Local Keywords | service, keyword, monthly volume at the client's location, difficulty 0–100, CPC, competition | **Focus keyphrase (FKP) selection** for service and location pages |
-| Keyword Ideas | service seed, keyword, US monthly volume, difficulty, intent, CPC (brand terms already removed **except brands the client installs** — listed on Summary as "Brands they install") | Secondary keyphrases, blog topics, gaps in the taxonomy. Brand terms left in are for brands the client installs: good FKPs for a service or product page (e.g. "James Hardie siding installation"); still ⚑ VERIFY any certification claim ("certified installer"). Never target a competitor's or retailer's name |
+| Summary | location used, services, cities, secondary cities, state focus, cost, notes | Check the location (city, state or national) and any notes before trusting the numbers. "State focus" means the client markets to a whole state (no main city) |
+| Local Keywords | service, keyword, monthly volume, difficulty 0–100, CPC, competition, volume measured in, city type (main city / secondary city / state / blank for the bare service and "near me") | **Focus keyphrase (FKP) selection** for service and location pages. Secondary-city rows size demand for location pages |
+| Keyword Ideas | service seed, keyword, US monthly volume, difficulty, intent, CPC (searches containing the service plus Google's related searches; off-topic and vague ideas and brand terms already removed **except brands the client installs** — listed on Summary as "Brands they install") | Secondary keyphrases, blog topics, gaps in the taxonomy. Brand terms left in are for brands the client installs: good FKPs for a service or product page (e.g. "James Hardie siding installation"); still ⚑ VERIFY any certification claim ("certified installer"). Never target a competitor's or retailer's name |
 | SERP Top 10 | search, position, title, domain, URL | Who ranks today; which page types win (directories vs local businesses) |
-| People Also Ask | search, question | The question bank: answer-first H2s and FAQ blocks |
+| People Also Ask | search, question, source ("People Also Ask" = Google's PAA box; "Searched question (N/mo US)" = a question people type, from Keyword Ideas) | The question bank: answer-first H2s and FAQ blocks. Prefer PAA rows; searched questions fill gaps |
 | AI Overview | search, shown yes/no, cited title/domain/URL | Which searches trigger an AI Overview and what gets cited — the GEO/AEO target |
 | Local Pack | search, business, rating, reviews, domain | The map-pack competitors for the content gap analysis |
 | City Plan | suggested tier, **Final tier**, city, state, miles, population, listed by client, searches/mo per service, why | Which cities get location pages and money pages — see `location-content.md`. Written by **Plan City Pages** (separate CRM menu item); use **Final tier**, not the suggestion |
@@ -30,7 +30,8 @@ run **Pull Keyword Data** first. Do not proceed with invented figures; if the us
 ## Choosing focus keyphrases from it
 
 - **Local intent beats national volume.** "roof repair hoover al" with 20 searches beats "roof repair" with 40,000 a
-  local business can't win. Volumes in Local Keywords are for the client's location; Keyword Ideas are national.
+  local business can't win. In Local Keywords, service + city phrases are measured across the state and the bare service / "near me" at the
+  main city (see "Volume measured in"); Keyword Ideas are national.
 - **Low or blank local volume is normal** for small cities (Google Ads reports small numbers as 0 or blank). Pick by
   intent and difficulty, and note it in the Blueprint rather than inflating it.
 - **Difficulty:** under ~30 is realistic for a new local site, 30–50 needs strong content and links, over 50 is a
