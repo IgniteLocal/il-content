@@ -64,6 +64,7 @@ needsVerification:                   # machine-readable ⚑ VERIFY (see below)
 # Wood Privacy Fence Installation in North Shelby County
 
 [body markdown: answer-first H2s, conversion structure, CTA — exactly as drafted]
+[name the subject in each H2 ("How much does gutter installation cost?", not "What does it cost?"): the build places each image beside the section it matches]
 ```
 
 Field notes:
